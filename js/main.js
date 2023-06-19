@@ -1,24 +1,42 @@
 //alert()//
 
+const MIN_SPEED = 10;
+const MAX_SPEED = 100;
+
 
 let velocidadMeteoro = 200;
 let velocidadEnmascarado = 200;
 
-let disminucionMeteoro = Math.random()*100;
-let disminucionEnmascarado = Math.random()*100;
+while (velocidadMeteoro > 0 && velocidadEnmascarado > 0) {
 
-console.log("meteoro sobrepasa con velocidad de "+ disminucionMeteoro);
-console.log("enmascarado pierde velocidad de " + disminucionEnmascarado);
+    let disminucionMeteoro = parseInt(Math.random()*(MAX_SPEED - MIN_SPEED) + MIN_SPEED);
+    let disminucionEnmascarado = parseInt(Math.random()*(MAX_SPEED - MIN_SPEED ) + MIN_SPEED);
 
-//velocidadMeteoro = velocidadMeteoro - disminucionEnmascarado;//
-velocidadMeteoro-=disminucionEnmascarado
+    //console.log("meteoro sobrepasa con velocidad de " + disminucionMeteoro);//
+    //console.log("enmascarado pierde velocidad de " + disminucionEnmascarado);//
 
-//velocidadEnmascarado = velocidadEnmascarado - disminucionMeteoro;//
-velocidadEnmascarado-=disminucionMeteoro
+    //velocidadMeteoro = velocidadMeteoro - disminucionEnmascarado;//
+    velocidadMeteoro -= disminucionEnmascarado
+
+    //velocidadEnmascarado = velocidadEnmascarado - disminucionMeteoro;//
+    velocidadEnmascarado -= disminucionMeteoro
 
 
-console.log("-------------------------------------------------")
+
+    if (velocidadMeteoro === velocidadEnmascarado) {
+        disminucionEnmascarado -= velocidadMeteoro;
+        disminucionMeteoro -= velocidadEnmascarado;
+    } else if (velocidadMeteoro > velocidadEnmascarado) {
+        disminucionEnmascarado -= velocidadMeteoro;
+    } else {
+        disminucionMeteoro -= velocidadEnmascarado;
+    }
 
 
-console.log("velocidad Meteoro " + velocidadMeteoro)
-console.log("velocidad Enmascarado "+ velocidadEnmascarado)
+
+    console.log("-------------------------------------------------");
+
+
+    console.log("velocidad Meteoro " + velocidadMeteoro);
+    console.log("velocidad Enmascarado " + velocidadEnmascarado);
+}
